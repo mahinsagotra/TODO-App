@@ -71,16 +71,16 @@ app.get("/", (req, res) => {
 
 app.post("/", function (req, res) {
   const itemName = req.body.newItem;
-  const listName = req.body.list;
+  //const listName = req.body.list;
   const item = new Item({
     name: itemName,
   });
-
+  //{ name: listName 
   if (listName === "Today") {
     item.save();
     res.redirect("/");
   } else {
-    List.findOne({ name: listName }, (err, foundList) => {
+    List.findOne(}{"name": {"$eq": req.body.list}}, (err, foundList) => {
       foundList.items.push(item);
       foundList.save();
       res.redirect("/" + listName);
